@@ -10,9 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_15_150957) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_15_201224) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.float "long"
+    t.float "lat"
+    t.string "addressable_type"
+    t.bigint "addressable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
+  end
+
+  create_table "materials", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "petitions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "material_id", null: false
+    t.date "date"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "collector_id"
+    t.index ["collector_id"], name: "index_petitions_on_collector_id"
+    t.index ["material_id"], name: "index_petitions_on_material_id"
+    t.index ["user_id"], name: "index_petitions_on_user_id"
+  end
+
+  create_table "recycling_sites", force: :cascade do |t|
+    t.bigint "material_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "collector_id"
+    t.index ["collector_id"], name: "index_recycling_sites_on_collector_id"
+    t.index ["material_id"], name: "index_recycling_sites_on_material_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +60,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_15_150957) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.boolean "collector"
+    t.text "tax_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "petitions", "materials"
+  add_foreign_key "petitions", "users"
+  add_foreign_key "petitions", "users", column: "collector_id"
+  add_foreign_key "recycling_sites", "materials"
+  add_foreign_key "recycling_sites", "users", column: "collector_id"
 end
