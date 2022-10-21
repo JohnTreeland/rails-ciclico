@@ -1,10 +1,14 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1507560461415-997cd00bfd45?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);">
-  <div class="container text-info text-center">
-    <h1>Haz parte del CICLO</h1>
-    <!--div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="¿Qué quieres reciclar?" aria-label="Búsqueda" aria-describedby="button-addon2">
-      <button class="btn btn-success text-info" type="button" id="button-addon2">Recicla</button>
-    </div-->
-    <a class="btn btn-outline-info text-info mt-5" href="#">Reciclar</a>
+<div class="ciclico-background d-flex flex-column justify-content-between" style="background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.1)), url(https://images.unsplash.com/photo-1507560461415-997cd00bfd45?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80) center;">
+  <%= render 'shared/navbar' %>
+  <div class="banner flex-grow-1">
+    <div class="container text-info text-center">
+      <h1>Haz parte del <i>ciclo</i></h1>
+      <!--div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="¿Qué quieres reciclar?" aria-label="Búsqueda" aria-describedby="button-addon2">
+        <button class="btn btn-success text-info" type="button" id="button-addon2">Recicla</button>
+      </div-->
+      <a class="btn btn-warning mt-5 rounded-pill text-success px-4" href="#">Recicla</a>
+    </div>
   </div>
+  <%= render 'shared/footer' %>
 </div>
