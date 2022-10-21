@@ -1,11 +1,11 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon bg-success">
+<div class="navbar navbar-expand-sm navbar-lewagon text-white">
   <div class="container-fluid">
     <div class="d-flex">
-      <%= link_to "/", class: "navbar-brand" do %>
-        <%= image_tag "https://4.bp.blogspot.com/-lpoKdAWMfpI/XDVpLH7cMGI/AAAAAAAAAAs/sCLD5z3bchYODXjT520VUOzKtU3M8VZCACEwYBhgL/s1600/dia-mundial-reciclaje-2018.jpg"  %>
+      <%= link_to "/", class: "navbar-brand ms-5" do %>
+        <i class="fa-solid fa-circle-notch text-warning fs-1"></i>
       <% end %>
       <div>
-       <h2>Cicliclo</h2>
+       <h1>Cíclico</h1>
       </div>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,13 +15,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+          <li class="nav-item active me-2">
+            <%= link_to "Mi Perfil", "#", class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+          <li class="nav-item me-2">
+            <%= link_to "Chat", "#", class: "nav-link" %>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown me-5">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Action", "#", class: "dropdown-item" %>
@@ -31,7 +31,8 @@
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-primary  " %>
+            <%#= link_to "Login", new_user_session_path, class: "nav-link btn btn-success rounded-pill text-secondary px-4 me-5" %>
+            <%= link_to "Iniciar Sesión", new_user_session_path, class: "nav-link px-4 me-5" %>
           </li>
         <% end %>
       </ul>

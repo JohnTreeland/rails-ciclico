@@ -1,14 +1,11 @@
 .banner {
-  background-size: cover;
-  background-position: center;
   padding: 150px 0;
-  width: auto;
-  height: 50%;
 }
 
 .banner h1 {
   margin: 0;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  color: $claro;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
   font-size: 72px;
   font-weight: bold;
 }
@@ -16,14 +13,9 @@
 .banner p {
   font-size: 30px;
   opacity: .7;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
 }
 
 .banner a {
   font-size: 30px;
-  color: $blanco;
-}
-
-.banner a:hover {
-  color: $verde;
 }
