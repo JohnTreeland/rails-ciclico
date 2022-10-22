@@ -77,6 +77,7 @@ collectors = User.where(collector: true)
 
 collectors.each do |collector|
   RecyclingSite.create!(
+    name: Faker::Games::Pokemon.name,
     material: Material.all.sample,
     collector: collectors.sample
   )
