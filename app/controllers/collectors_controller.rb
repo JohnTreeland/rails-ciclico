@@ -3,4 +3,3 @@ class CollectorsController < ApplicationController
     @collectors = User.where(collector: true)
   end
 end
-
