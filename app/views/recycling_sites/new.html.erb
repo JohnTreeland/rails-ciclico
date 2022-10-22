@@ -1,0 +1,8 @@
+<div class="container">
+  <h1 class="text-body text-center">Crea tu punto de reciclaje</h1>
+  <%= simple_form_for [@recycling_site] do |f| %>
+        <%= f.input :name %>
+        <%= f.association :material, collection: Material.all, label_method: :category %>
+        <%= f.button :submit, "Add recycling sites", class: "btn btn-primary mb-3" %>
+      <% end %>
+</div>
