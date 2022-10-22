@@ -1,0 +1,23 @@
+<div class="ciclico-background d-flex flex-column justify-content-between" style="background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.1)), url(https://images.unsplash.com/photo-1591193686104-fddba4d0e4d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80) center;">
+  <%= render 'shared/navbar' %>
+  <div class="container show-info bg-primary rounded-5 p-5">
+    <div class="row">
+      <div class="col-8">
+        <h1>En este sitio podrás reciclar: </h1>
+        <h1 class="text-warning"><%= @recycling_site.material.category %></h1>
+        <p>Más información sobre el lugar</p>
+        <%= link_to "Volver", recycling_sites_path, class:"btn btn-success rounded-pill text-secondary" %>
+        <%= link_to "Hablar con el recolector", "#", class:"btn btn-success rounded-pill text-secondary" %>
+      </div>
+      <div class="col-4">
+        <h3>Ubicación</h3>
+        <h4><%#= @recycling_site.material.address %></h4>
+        <div class="map p-5 m-5">
+          <h1>acá va el mapa</h1>
+        </div>
+        <%= link_to "Agenda tu visita", "#", class:"btn btn-success rounded-pill text-secondary" %>
+      </div>
+    </div>
+  </div>
+  <%= render 'shared/footer' %>
+</div>
