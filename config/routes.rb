@@ -5,8 +5,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :collectors
-
+  resources :collectors, only: %i[index show]
   resources :recycling_sites
 
 end
