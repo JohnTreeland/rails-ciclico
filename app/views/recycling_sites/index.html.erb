@@ -1,0 +1,16 @@
+<div class="container mt-3">
+  <h1 class="text-body text-center">Sitios de reciclaje </h1>
+  <div class="row">
+    <% @recycling_sites.each do |site| %>
+      <div class="col-4">
+        <div class="card my-2">
+              <img src="https://www.elmundo.com/assets/uploads/files/Propuetsa%20reciclaje.jpg" class="card-img-top">
+              <div class="card-body">
+                <h2><%= site.name %></h2>
+                <p>Contacta a </p>
+              </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
