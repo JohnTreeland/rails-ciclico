@@ -4,6 +4,7 @@ RecyclingSite.destroy_all
 Material.destroy_all
 User.destroy_all
 
+puts "Borrando base de datos..."
 # Creación de usuarios
 
 9.times do
@@ -18,7 +19,7 @@ User.destroy_all
   user.save
 end
 
-puts "Random users created"
+puts "Creando usuarios..."
 
 # Usuarios para la demo
 
@@ -55,8 +56,10 @@ albert = User.create!(
   password_confirmation: "123456",
   first_name: 'Albert Andrés',
   last_name: 'Mesa',
-  sitter: false
+  collector: false
 )
+
+puts "Creando materiales..."
 
 # Materiales
 materials = %w[Aceite Baterías Electrónicos Papel/Carton Ropa Plástico Vidrio]
@@ -67,6 +70,8 @@ materials.each do |material|
   )
 end
 
+puts "Creando sitios de reciclaje..."
+
 # Creación de sitios de reciclaje
 collectors = User.where(collector: true)
 
@@ -76,6 +81,8 @@ collectors.each do |collector|
     collector: collectors.sample
   )
 end
+
+puts "Creando peticiones..."
 
 # Creación de peticiones
 Petition.create!(
