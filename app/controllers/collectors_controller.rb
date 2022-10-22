@@ -14,4 +14,5 @@ class CollectorsController < ApplicationController
   def set_collector
     @collector = User.find(params[:id])
   end
+  
 end
