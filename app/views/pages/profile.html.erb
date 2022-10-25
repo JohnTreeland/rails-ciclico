@@ -1,0 +1,28 @@
+<div class="ciclico-gradient-show d-flex flex-column justify-content-between">
+  <%= render 'shared/navbar' %>
+  <div class="container text-secondary bg-primary rounded-5 p-5">
+    <div class="row">
+      <div class="col-8">
+        <h3>Mi perfil</h3>
+        <div class="name d-flex">
+          <h1> <%= current_user.first_name %></h1>
+          <h1 class="text-warning ms-3"><%= current_user.last_name %></h1>
+        </div>
+      </div>
+      <div class="col-4">
+        <h3>Peticiones activas</h3>
+        <hr>
+        <div class="mt-3">
+          <% Petition.where(user: current_user).each do |petition| %>
+            <p>Recolector: <%= petition.collector.first_name %></p>
+            <p>Fecha: <%= petition.date %></p>
+            <p>Material: <%= petition.material.category %></p>
+            <p>Estado: <%= petition.status %></p>
+            <hr>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render 'shared/footer' %>
+</div>
