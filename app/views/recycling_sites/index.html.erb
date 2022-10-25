@@ -1,3 +1,4 @@
+ <%= render 'shared/navbar' %>
 <div class="container mt-3">
 
   <div class="input-group mb-3">
@@ -14,9 +15,12 @@
               <div class="card-body">
                 <h2><%= site.name %></h2>
                 <p>Contacta a </p>
+                <%= link_to "Ver detalle", recycling_site_path( site) %>
               </div>
         </div>
       </div>
     <% end %>
   </div>
+
 </div>
+<%= render 'shared/footer' %>
