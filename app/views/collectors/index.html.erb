@@ -1,21 +1,27 @@
-<div class="container mt-3">
- <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Que buscas?" aria-label="Recipient's username" aria-describedby="button-addon2">
-  <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-</div>
-  <h1 class="text-body text-center">Recicladores </h1>
-  <div class="row">
-    <% @collectors.each do |collector| %>
-      <div class="col-4">
-        <div class="card my-2">
-              <img src="https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg" class="card-img-top">
-              <div class="card-body">
-                <h2><%= collector.first_name %></h2>
-                <p>Contacta a </p>
-                <%= link_to "Ver detalle", collector_path(collector) %>
-              </div>
+<div class="ciclico-gradient d-flex flex-column justify-content-between">
+  <%= render 'shared/navbar' %>
+  <div class="container mt-3">
+    <h1 class="text-secondary text-center">Estos recicladores trabajan cerca a tí</h1>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control rounded-pill me-2" placeholder="Ubicación" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <input type="text" class="form-control rounded-pill me-2" placeholder="Material" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <input type="text" class="form-control rounded-pill me-2" placeholder="Fecha" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <button class="btn btn-primary rounded-pill" type="button" id="button-addon2">Filtrar</button>
+    </div>
+    <div class="row">
+      <% @collectors.each do |collector| %>
+        <div class="col-4">
+          <div class="card my-2">
+                <img src="https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg" class="card-img-top">
+                <div class="card-body">
+                  <h2><%= collector.first_name %></h2>
+                  <p>Contacta a </p>
+                  <%= link_to "Ver detalle", collector_path(collector) %>
+                </div>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
+  <%= render 'shared/footer' %>
 </div>

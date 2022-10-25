@@ -1,2 +1,18 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.ciclico-gradient {
+  background: linear-gradient(217deg, #FAF5E400, #A4BFBB 30%, #FAF5E400 65%),
+              linear-gradient(127deg, #FAF5E400, #FADC87 20%, #FAF5E400 55%),
+              linear-gradient(336deg, #FAF5E400, #FFB0B0 30%, #FAF5E400 75%);
+  width: 100%;
+  height:100%;
+}
+
+.ciclico-gradient-show {
+  background: linear-gradient(217deg, #FAF5E400, #A4BFBB 30%, #FAF5E400 65%),
+              linear-gradient(127deg, #FAF5E400, #FADC87 20%, #FAF5E400 55%),
+              linear-gradient(336deg, #FAF5E400, #FFB0B0 30%, #FAF5E400 75%);
+  width: 100%;
+  height:100vh;
+}

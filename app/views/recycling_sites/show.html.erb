@@ -1,21 +1,23 @@
-<div class="ciclico-background d-flex flex-column justify-content-between" style="background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.1)), url(https://images.unsplash.com/photo-1591193686104-fddba4d0e4d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80) center;">
+<div class="ciclico-gradient-show d-flex flex-column justify-content-between">
   <%= render 'shared/navbar' %>
-  <div class="container show-info bg-primary rounded-5 p-5">
+  <div class="container bg-primary rounded-5 p-5 my-3 text-secondary">
     <div class="row">
       <div class="col-8">
-        <h1>En este sitio podrás reciclar: </h1>
+        <h1 class="text-secondary">En <%= @recycling_site.name %> sitio podrás reciclar: </h1>
         <h1 class="text-warning"><%= @recycling_site.material.category %></h1>
+        <img src="https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg" class="text-center mb-3" style="height: 300px; width: 500px">
         <p>Más información sobre el lugar</p>
-        <%= link_to "Volver", recycling_sites_path, class:"btn btn-success rounded-pill text-secondary" %>
+        <%= link_to "Regresar", recycling_sites_path, class:"btn btn-success rounded-pill text-secondary" %>
         <%= link_to "Hablar con el recolector", "#", class:"btn btn-success rounded-pill text-secondary" %>
       </div>
       <div class="col-4">
-        <h3>Ubicación</h3>
+        <h3>Ubicación:</h3>
         <h4><%#= @recycling_site.material.address %></h4>
-        <div class="map p-5 m-5">
-          <h1>acá va el mapa</h1>
+        <div class="map">
+          <img src="https://static.vecteezy.com/system/resources/previews/002/920/438/original/abstract-city-map-seamless-pattern-roads-navigation-gps-use-for-pattern-fills-surface-textures-web-page-background-wallpaper-illustration-free-vector.jpg" alt="" style="width: 300px">
         </div>
-        <%= link_to "Agenda tu visita", "#", class:"btn btn-success rounded-pill text-secondary" %>
+        <%#= link_to "Agenda tu visita", "#", class:"btn btn-success rounded-pill text-secondary mt-2" %>
+        <%= link_to "Ir", "#", class:"btn btn-success rounded-pill text-secondary mt-2 px-5" %>
       </div>
     </div>
   </div>

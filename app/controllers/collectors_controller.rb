@@ -7,6 +7,7 @@ class CollectorsController < ApplicationController
   end
 
   def show
+    @petition = Petition.new
   end
 
   private
@@ -14,5 +15,5 @@ class CollectorsController < ApplicationController
   def set_collector
     @collector = User.find(params[:id])
   end
-  
+
 end
