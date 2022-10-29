@@ -23,10 +23,12 @@
           </li>
           <li class="nav-item dropdown me-5">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            <div class="dropdown-menu dropdown-menu-end dropdown-ciclico" aria-labelledby="navbarDropdown">
+              <% if current_user.collector %>
+                <%= link_to "Administrar Sitios de Reciclaje", "#", class: "dropdown-item text-info" %>
+                <%= link_to "Ver Peticiones", "#", class: "dropdown-item text-info" %>
+              <% end %>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item text-info" %>
             </div>
           </li>
         <% else %>

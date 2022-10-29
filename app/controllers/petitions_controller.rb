@@ -8,6 +8,7 @@ class PetitionsController < ApplicationController
   def create
     @petition = Petition.new(petition_params)
     @petition.user = current_user
+    @address = Address.create(address: address_data[:addresses_data][:address], addressable: @petition)
     @petition.collector = @collector
     @petition.status = "Realizada"
     if @petition.save
@@ -17,13 +18,16 @@ class PetitionsController < ApplicationController
     end
   end
 
-  private
-
   def set_collector
     @collector = User.find(params[:collector_id])
   end
 
   def petition_params
     params.require(:petition).permit(:material_id, :date)
+    # params.require(:petition).permit(:material_id, :date, addresses: [:address])
+  end
+
+  def address_data
+    params.require(:petition).permit(addresses_data: [:address])
   end
 end
