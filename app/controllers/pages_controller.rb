@@ -6,4 +6,8 @@ class PagesController < ApplicationController
 
   def profile
   end
+
+  def edit
+
+  end
 end

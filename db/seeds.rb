@@ -90,6 +90,6 @@ Petition.create!(
   user: juanma,
   material: Material.all.sample,
   date: Date.today,
-  status: "0",
+  status: 0,
   collector: romario
 )
