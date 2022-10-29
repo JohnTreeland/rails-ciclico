@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   get '/profile', to: 'pages#profile'
-
+  get '/profile/edit', to: 'pages#edit'
   # Defines the root path route ("/")
   # root "articles#index"
   resources :collectors, only: %i[index show]
   resources :recycling_sites
   resources :petitions, only: %i[index new create]
+  patch "petitions/:id/accept", to: "petitions#accept_petition", as: "accept_petition"
+  patch "petitions/:id/decline", to: "petitions#decline_petition", as: "decline_petition"
 end

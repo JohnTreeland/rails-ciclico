@@ -1,4 +1,4 @@
-<div class="ciclico-gradient-show d-flex flex-column justify-content-between">
+  <div class="ciclico-gradient-show d-flex flex-column justify-content-between">
   <%= render 'shared/navbar' %>
   <div class="container text-secondary bg-primary rounded-5 p-5">
     <div class="row">
@@ -8,6 +8,8 @@
           <h1> <%= current_user.first_name %></h1>
           <h1 class="text-warning ms-3"><%= current_user.last_name %></h1>
         </div>
+        <h5 >email: <%= current_user.email %></h5>
+        <h5 >tax_number: <%= current_user.tax_number %></h5>
       </div>
       <div class="col-4">
         <h3>Peticiones activas</h3>
@@ -17,7 +19,24 @@
             <p>Recolector: <%= petition.collector.first_name %></p>
             <p>Fecha: <%= petition.date %></p>
             <p>Material: <%= petition.material.category %></p>
-            <p>Estado: <%= petition.status %></p>
+            <div class="d-flex">
+              <p class="me-2">Estado: </p>
+              <% if petition.pendiente? %>
+                <p>Pendiente </p>
+              <% elsif petition.aceptado? %>
+                <p>Aceptado</p>
+              <% elsif petition.rechazado?  %>
+                <p> Rechazado </p>
+              <% end %>
+            </div>
+            <%= link_to "Aceptar peticion", accept_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary" %>
+            <%= link_to "Rechazar peticion", decline_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary" %>
+            <% if current_user == current_user.collector %>
+              <%= link_to "Aceptar peticion", accept_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary" %>
+            <% end %>
+            <% if current_user == current_user.collector %>
+              <%= link_to "Rechazar peticion", decline_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary" %>
+            <% end %>
             <hr>
           <% end %>
         </div>
@@ -25,4 +44,5 @@
     </div>
   </div>
   <%= render 'shared/footer' %>
+  <%= console %>
 </div>
