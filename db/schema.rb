@@ -10,17 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_29_145128) do
+
+ActiveRecord::Schema[7.0].define(version: 2022_10_29_153047) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.float "long"
-    t.float "lat"
+    t.float "longitude"
+    t.float "latitude"
     t.string "addressable_type"
     t.bigint "addressable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
   end
 
@@ -33,7 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_29_145128) do
   create_table "petitions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "material_id", null: false
-    t.date "date"
+    t.datetime "date", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "collector_id"

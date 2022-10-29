@@ -3,4 +3,6 @@ class Petition < ApplicationRecord
   belongs_to :collector, class_name: "User"
   belongs_to :material
   enum status: %i[pendiente aceptado rechazado]
+  has_many :addresses, as: :addressable
+
 end

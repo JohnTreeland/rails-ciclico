@@ -1,0 +1,26 @@
+.mapboxgl-ctrl-geocoder {
+  max-width: 100%;
+  width: 100%;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.geocoder-dropdown-item {
+  padding: 5px;
+}
+
+.geocoder-dropdown-icon {
+  margin-right: 10px;
+}
+
+.geocoder-dropdown-text {
+  color: #5a3fc0;
+  font-size: larger;
+}
+
+@media screen and (min-width: 640px) {
+  .mapboxgl-ctrl-geocoder {
+      font-size: 15px;
+      line-height: 20px;
+  }
+}
