@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   def profile
   end
 
-  def edit
+  def profile_collector
 
   end
 end

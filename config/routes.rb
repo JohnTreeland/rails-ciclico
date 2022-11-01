@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   get '/profile', to: 'pages#profile'
-  get '/profile/edit', to: 'pages#edit'
+  get '/profile_collector', to: 'pages#profile_collector', as: "profile_collector"
   # Defines the root path route ("/")
   # root "articles#index"
   resources :collectors, only: %i[index show]
