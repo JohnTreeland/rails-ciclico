@@ -23,7 +23,7 @@ class PetitionsController < ApplicationController
     @petition = Petition.find(params[:id])
     @petition.status = 1
     if @petition.save
-      redirect_to profile_collector_path
+      redirect_to daily_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class PetitionsController < ApplicationController
     @petition = Petition.find(params[:id])
     @petition.status = 2
     if @petition.save
-      redirect_to profile_collector_path
+      redirect_to daily_path
     else
       render :new, status: :unprocessable_entity
     end

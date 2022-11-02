@@ -17,7 +17,7 @@
         <% if user_signed_in? %>
         <li>
           <% if current_user.collector? %>
-            <%= link_to "Agendas", "/profile_collector", class: "nav-link" %>
+            <%= link_to "Agendas", "/daily", class: "nav-link" %>
           <% end %>
         </li>
           <li class="nav-item active me-2">

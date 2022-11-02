@@ -3,10 +3,10 @@
   <div class="container text-secondary bg-primary rounded-5 p-5">
     <div class="row">
       <div class="col-8">
-        <h3>Mi perfil</h3>
+        <h1>Mi perfil</h1>
         <div class="name d-flex">
-          <h1> <%= current_user.first_name %></h1>
-          <h1 class="text-warning ms-3"><%= current_user.last_name %></h1>
+          <h3> <%= current_user.first_name %></h3>
+          <h3 class="text-warning ms-3"><%= current_user.last_name %></h3>
         </div>
         <h5 >email: <%= current_user.email %></h5>
         <h5 >tax_number: <%= current_user.tax_number %></h5>
