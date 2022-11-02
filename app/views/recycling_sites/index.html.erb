@@ -19,7 +19,11 @@
       <% @recycling_sites.each do |site| %>
         <div class="col-4">
           <div class="card my-2">
-                <img src="https://www.elmundo.com/assets/uploads/files/Propuetsa%20reciclaje.jpg" class="card-img-top">
+                 <% if site.photo.attached? %>
+                   <%= cl_image_tag site.photo.key %>
+                  <% else %>
+                   <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg" %>
+                  <% end %>
                 <div class="card-body">
                   <h2><%= site.name %></h2>
                   <p>Contacta a </p>
