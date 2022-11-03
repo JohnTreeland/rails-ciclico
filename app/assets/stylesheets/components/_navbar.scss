@@ -1,6 +1,5 @@
 .navbar-lewagon {
   justify-content: space-between;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
   background: rgba($color: #ffffff, $alpha: 0.0);
 }
 
@@ -19,5 +18,14 @@
   &:hover{
     color: $amarillo;
     border-bottom: solid $amarillo;
+  }
+}
+
+.dropdown-ciclico {
+  background: rgba(0, 0, 0, 0.5);
+  .a {
+    &:hover{
+    background: rgba(255, 0, 0, 0.5)
+    }
   }
 }

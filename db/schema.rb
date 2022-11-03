@@ -43,12 +43,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_28_013916) do
   end
 
   create_table "addresses", force: :cascade do |t|
-    t.float "long"
-    t.float "lat"
+    t.float "longitude"
+    t.float "latitude"
     t.string "addressable_type"
     t.bigint "addressable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
   end
 
@@ -61,11 +62,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_28_013916) do
   create_table "petitions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "material_id", null: false
-    t.date "date"
-    t.string "status"
+    t.datetime "date", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "collector_id"
+    t.integer "status", default: 0
     t.index ["collector_id"], name: "index_petitions_on_collector_id"
     t.index ["material_id"], name: "index_petitions_on_material_id"
     t.index ["user_id"], name: "index_petitions_on_user_id"

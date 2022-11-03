@@ -1,3 +1,5 @@
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
 <div class="ciclico-gradient-show d-flex flex-column justify-content-between">
   <%= render 'shared/navbar' %>
   <div class="container text-secondary bg-primary rounded-5 p-5">
@@ -20,9 +22,16 @@
         </div>
         <div class="mt-3">
           <%= simple_form_for @petition do |f|%>
+            <%= f.input :status, as: :hidden, value: 0  %>
             <%= f.datetime_select :date %>
             <%= f.association :material, collection: Material.all, label_method: :category %>
             <%= hidden_field_tag 'collector_id', @collector.id %>
+            <%= f.simple_fields_for :addresses_data do |a| %>
+              <%= a.input :address,
+                input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
+                wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+              %>
+            <% end %>
             <%= f.submit "Programar recogida", class:"btn btn-success rounded-pill text-secondary mt-3" %>
           <% end %>
         </div>

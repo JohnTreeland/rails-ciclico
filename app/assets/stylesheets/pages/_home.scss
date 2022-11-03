@@ -1,13 +1,13 @@
 // Specific CSS for your home-page
 h1 {
   font-weight: 700;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+
 }
 
 .ciclico-background {
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: cover!important;
   width: 100%;
   height:100vh;  /* responsive height */
 }

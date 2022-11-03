@@ -7,6 +7,7 @@ class RecyclingSitesController < ApplicationController
   end
 
   def show
+    @petition = Petition.new
   end
 
   def new

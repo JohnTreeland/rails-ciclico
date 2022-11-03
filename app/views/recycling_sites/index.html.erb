@@ -14,22 +14,24 @@
     <div class="d-flex justify-content-between">
       <h2 class="text-primary text-left mt-3">Sitios de reciclaje destacados</h2>
       <%= link_to "Regresar", "/", class:"btn btn-info-ciclico rounded-pill mt-3" %>
+      <%= link_to "Crea tu sitio", " /recycling_sites/new", class:"btn btn-info-ciclico rounded-pill mt-3" %>
     </div>
     <div class="row">
       <% @recycling_sites.each do |site| %>
         <div class="col-4">
-          <div class="card my-2">
-                 <% if site.photo.attached? %>
+           <%= link_to recycling_site_path(site) do %>
+            <div class="card my-2">
+                  <% if site.photo.attached? %>
                    <%= cl_image_tag site.photo.key %>
                   <% else %>
                    <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg" %>
                   <% end %>
-                <div class="card-body">
-                  <h2><%= site.name %></h2>
-                  <p>Contacta a </p>
-                  <%= link_to "Ver detalle", recycling_site_path(site) %>
-                </div>
-          </div>
+                  <div class="card-body">
+                    <p>Contacta a </p>
+                    <h2><%= site.name %></h2>
+                  </div>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>

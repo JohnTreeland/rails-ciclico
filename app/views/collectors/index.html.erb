@@ -11,14 +11,15 @@
     <div class="row">
       <% @collectors.each do |collector| %>
         <div class="col-4">
-          <div class="card my-2">
-                <img src="https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg" class="card-img-top">
-                <div class="card-body">
-                  <h2><%= collector.first_name %></h2>
-                  <p>Contacta a </p>
-                  <%= link_to "Ver detalle", collector_path(collector) %>
-                </div>
-          </div>
+          <%= link_to collector_path(collector) do %>
+            <div class="card my-2">
+                  <img src="https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg" class="card-img-top">
+                  <div class="card-body">
+                   <p>Contacta a </p>
+                    <h2><%= collector.first_name %></h2>
+                  </div>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>
