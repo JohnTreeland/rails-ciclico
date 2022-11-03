@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   def profile
   end
 
-  def profile_collector
+  def daily
 
   end
 end

@@ -19,14 +19,15 @@
     <div class="row">
       <% @recycling_sites.each do |site| %>
         <div class="col-4">
-          <div class="card my-2">
-                <img src="https://www.elmundo.com/assets/uploads/files/Propuetsa%20reciclaje.jpg" class="card-img-top">
-                <div class="card-body">
-                  <h2><%= site.name %></h2>
-                  <p>Contacta a </p>
-                  <%= link_to "Ver detalle", recycling_site_path(site) %>
-                </div>
-          </div>
+           <%= link_to recycling_site_path(site) do %>
+            <div class="card my-2">
+                  <img src="https://www.elmundo.com/assets/uploads/files/Propuetsa%20reciclaje.jpg" class="card-img-top">
+                  <div class="card-body">
+                    <p>Contacta a </p>
+                    <h2><%= site.name %></h2>
+                  </div>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>
