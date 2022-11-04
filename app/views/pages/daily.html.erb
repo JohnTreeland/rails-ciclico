@@ -3,25 +3,13 @@
   <div class="container text-secondary bg-primary rounded-5 p-5">
     <div class="row">
       <div class="col-8">
-        <h3 style="float:left" class="m-1">Mi perfil</h3>
-        <% if current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, width:50, height:50 %>
-        <% else %>
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", width:50, height:50 %>
-        <% end %>
-        <div class="name d-flex">
-          <h3> <%= current_user.first_name %></h3>
-          <h3 class="text-warning ms-3"><%= current_user.last_name %></h3>
-        </div>
-        <h5 >email: <%= current_user.email %></h5>
-        <h5 >tax_number: <%= current_user.tax_number %></h5>
-      </div>
+
       <div class="col-4">
-        <h3>Peticiones activas</h3>
+        <h3>Agendas para ti</h3>
         <hr>
         <div class="mt-3">
-          <% Petition.where(user: current_user).each do |petition| %>
-            <p>Recolector: <%= petition.collector.first_name %></p>
+          <% Petition.where(collector: current_user).each do |petition| %>
+            <p>Solicitante: <%= petition.user.first_name %></p>
             <p>Fecha: <%= petition.date %></p>
             <p>Material: <%= petition.material.category %></p>
             <div class="d-flex">
@@ -34,11 +22,17 @@
                 <p> Rechazado </p>
               <% end %>
             </div>
+            <%# <%= link_to "Aceptar peticion", accept_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary" %>
+            <%# <%= link_to "Rechazar peticion", decline_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary" %>
+            <% if current_user.collector? %>
+              <%= link_to "Rechazar peticion", decline_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary" %>
+              <%= link_to "Aceptar peticion", accept_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary" %>
+            <% end %>
             <hr>
           <% end %>
         </div>
       </div>
     </div>
   </div>
-  <%= render 'shared/footer' %>
 </div>
+<%= render 'shared/footer' %>
