@@ -27,8 +27,6 @@
         <h1 class="text-warning"><%= @recycling_site.material.category %></h1>
           <% if @recycling_site.photo.attached? %>
             <%= cl_image_tag @recycling_site.photo.key, class: "text-center mb-3", style: "height: 300px; width: 500px" %>
-          <% elsif @recycling_site.collector.photo.attached? %>
-            <%= cl_image_tag @recycling_site.collector.photo.key, class: "text-center mb-3", style: "height: 300px; width: 500px" %>
           <% else %>
             <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg", class: "text-center mb-3", style: "height: 300px; width: 500px" %>
           <% end %>
