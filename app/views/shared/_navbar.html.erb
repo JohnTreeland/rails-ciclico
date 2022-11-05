@@ -15,11 +15,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-        <li>
-          <% if current_user.collector? %>
-            <%= link_to "Agendas", "/daily", class: "nav-link" %>
-          <% end %>
-        </li>
           <li class="nav-item active me-2">
             <%= link_to "Mi Perfil", "/profile", class: "nav-link" %>
           </li>
@@ -34,8 +29,8 @@
             <% end %>
             <div class="dropdown-menu dropdown-menu-end dropdown-ciclico" aria-labelledby="navbarDropdown">
               <% if current_user.collector %>
-                <%= link_to "Administrar Sitios de Reciclaje", "#", class: "dropdown-item text-info" %>
-                <%= link_to "Ver Peticiones", "#", class: "dropdown-item text-info" %>
+                <%= link_to "Administrar Sitios de Reciclaje", "/my_sites", class: "dropdown-item text-info" %>
+                <%= link_to "Ver Peticiones", "/daily", class: "dropdown-item text-info" %>
               <% end %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item text-info" %>
             </div>
