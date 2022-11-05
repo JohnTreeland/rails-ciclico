@@ -1,41 +1,78 @@
   <div class="ciclico-gradient-show d-flex flex-column justify-content-between">
   <%= render 'shared/navbar' %>
-  <div class="container text-secondary bg-primary rounded-5 p-5">
-    <div class="row">
-      <div class="col-8">
-        <h3 style="float:left" class="m-1">Mi perfil</h3>
-        <% if current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, width:50, height:50 %>
-        <% else %>
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", width:50, height:50 %>
-        <% end %>
-        <div class="name d-flex">
-          <h3> <%= current_user.first_name %></h3>
-          <h3 class="text-warning ms-3"><%= current_user.last_name %></h3>
+  <div class="container text-secondary bg-primary rounded-5 px-5 pb-5 flex-grow-1">
+    <div class="">
+      <div class="tabs">
+        <div class="tab">
+          <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
+          <label for="tab-1" class="tab-label rounded-pill me-2">Mi Perfil</label>
+          <div class="tab-content mt-2 rounded-5" id="profile-scroll">
+            <% if current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key, width:50, height:50 %>
+            <% else %>
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", width:50, height:50 %>
+            <% end %>
+            <div class="name d-flex">
+              <h3> <%= current_user.first_name %></h3>
+              <h3 class="text-warning ms-3"><%= current_user.last_name %></h3>
+            </div>
+            <h5 >email: <%= current_user.email %></h5>
+            <%= link_to "Editar perfil", edit_user_registration_path, class: "nav-link px-4 me-5" %>
+          </div>
         </div>
-        <h5 >email: <%= current_user.email %></h5>
-        <h5 >tax_number: <%= current_user.tax_number %></h5>
-      </div>
-      <div class="col-4">
-        <h3>Peticiones activas</h3>
-        <hr>
-        <div class="mt-3">
-          <% Petition.where(user: current_user).each do |petition| %>
-            <p>Recolector: <%= petition.collector.first_name %></p>
-            <p>Fecha: <%= petition.date %></p>
-            <p>Material: <%= petition.material.category %></p>
-            <div class="d-flex">
-              <p class="me-2">Estado: </p>
-              <% if petition.pendiente? %>
-                <p>Pendiente </p>
-              <% elsif petition.aceptado? %>
-                <p>Aceptado</p>
-              <% elsif petition.rechazado?  %>
-                <p> Rechazado </p>
+        <div class="tab">
+          <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
+          <label for="tab-2" class="tab-label rounded-pill me-2">Recolecciones programadas</label>
+          <div class="tab-content mt-2 rounded-5">
+            <div class="mt-3 row">
+              <% Petition.where(user: current_user).each do |petition| %>
+                <% if petition.collector %>
+                  <div class="col-4">
+                    <p>Recolector: <%= petition.collector.first_name %></p>
+                    <p>Material: <%= petition.material.category %></p>
+                    <p>Fecha: <%= petition.date %></p>
+                    <div class="d-flex">
+                      <p class="me-2">Estado: </p>
+                      <% if petition.pendiente? %>
+                        <p>Pendiente </p>
+                      <% elsif petition.aceptado? %>
+                        <p>Aceptado</p>
+                      <% elsif petition.rechazado?  %>
+                        <p> Rechazado </p>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
               <% end %>
             </div>
-            <hr>
-          <% end %>
+          </div>
+        </div>
+        <div class="tab">
+          <input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
+          <label for="tab-3" class="tab-label rounded-pill me-2">Visitas programadas</label>
+          <div class="tab-content mt-2 rounded-5">
+            <div class="mt-3 row">
+              <% Petition.where(user: current_user).each do |petition| %>
+                <% if petition.recycling_site %>
+                  <div class="col-4">
+                    <p>Sitio de reciclaje: <%= petition.recycling_site.name %></p>
+                    <p>Material: <%= petition.recycling_site.material.category %></p>
+                    <p>Fecha: <%= petition.date %></p>
+                    <div class="d-flex">
+                      <p class="me-2">Estado: </p>
+                      <% if petition.pendiente? %>
+                        <p>Pendiente </p>
+                      <% elsif petition.aceptado? %>
+                        <p>Aceptado</p>
+                      <% elsif petition.rechazado?  %>
+                        <p> Rechazado </p>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>

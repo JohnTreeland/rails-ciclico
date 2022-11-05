@@ -2,12 +2,14 @@
   <%= render 'shared/navbar' %>
   <div class="container mt-3">
     <h1 class="text-secondary text-center">¿Dónde quieres llevar tu reciclaje?</h1>
-    <div class="input-group mb-3">
-      <input type="text" class="form-control rounded-pill me-2" placeholder="Ubicación" aria-label="Recipient's username" aria-describedby="button-addon2">
-      <input type="text" class="form-control rounded-pill me-2" placeholder="Material" aria-label="Recipient's username" aria-describedby="button-addon2">
-      <input type="text" class="form-control rounded-pill me-2" placeholder="Fecha" aria-label="Recipient's username" aria-describedby="button-addon2">
-      <button class="btn btn-primary rounded-pill" type="button" id="button-addon2">Filtrar</button>
-    </div>
+    <%= form_with url: recycling_sites_path, method: :get, class: "d-flex px-3 pb-3" do %>
+      <%= select_tag :material,
+        options_for_select([["Material a reciclar"], ["Aceite"], ["Baterías"], ["Electrónicos"], ["Papel/Carton"], ["Ropa"], ["Plástico"], ["Vidrio"],]),
+        class: "form-control",
+        placeholder: "Looking your City"
+      %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
    <%# <div id='map' style='width: 100%; height: 300px;'></div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWxhbmRldjEiLCJhIjoiY2w5dTM5eW03MjI5cDNubGIxcTN0dnZoZSJ9.VdPofwD65dVmBHJiTxLmaA';

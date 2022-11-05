@@ -15,11 +15,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-        <li>
-          <% if current_user.collector? %>
-            <%= link_to "Agendas", "/daily", class: "nav-link" %>
-          <% end %>
-        </li>
           <li class="nav-item active me-2">
             <%= link_to "Mi Perfil", "/profile", class: "nav-link" %>
           </li>
@@ -30,24 +25,62 @@
             <% if current_user.photo.attached?  %>
               <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, style: "width:50px;height:50px;"%>
             <% else %>
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <%= image_tag "data:image/png;base64,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", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% end %>
             <div class="dropdown-menu dropdown-menu-end dropdown-ciclico" aria-labelledby="navbarDropdown">
               <% if current_user.collector %>
-                <%= link_to "Administrar Sitios de Reciclaje", "#", class: "dropdown-item text-info" %>
-                <%= link_to "Ver Peticiones", "#", class: "dropdown-item text-info" %>
+                <%= link_to "Administrar Sitios de Reciclaje", "/my_sites", class: "dropdown-item text-info" %>
+                <%= link_to "Ver Peticiones", "/daily", class: "dropdown-item text-info" %>
               <% end %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item text-info" %>
             </div>
           </li>
 
         <% else %>
-          <li class="nav-item">
+          <%# <li class="nav-item"> %>
             <%#= link_to "Login", new_user_session_path, class: "nav-link btn btn-success rounded-pill text-secondary px-4 me-5" %>
-            <%= link_to "Iniciar Sesión", new_user_session_path, class: "nav-link px-4 me-5" %>
+            <%#= link_to "Iniciar Sesión", new_user_session_path, class: "nav-link px-4 me-5" %>
+          <%# </li> %>
+          <li class="nav-item">
+            <a type="button" class="nav-link px-4 me-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Iniciar Sesión
+            </a>
           </li>
         <% end %>
       </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-5 bg-secondary">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Inicio de sesión</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email,
+                        required: false,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" } %>
+            <%= f.input :password,
+                        required: false,
+                        input_html: { autocomplete: "current-password" } %>
+            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+            <%= link_to "Olvidaste tu contraseña?", new_password_path(resource_name) %><br />
+          </div>
+      </div>
+      <div class="modal-footer">
+        <div class="form-actions">
+            <%= f.button :submit, "Continuar reciclando", class: "text-secondary btn btn-primary rounded-pill" %>
+          </div>
+        <% end %>
+        <%= link_to "Regístrate", new_registration_path(resource_name), class: "btn btn-success rounded-pill" %><br />
+      </div>
     </div>
   </div>
 </div>
