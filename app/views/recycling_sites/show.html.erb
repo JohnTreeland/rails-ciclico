@@ -1,15 +1,35 @@
 <div class="ciclico-gradient-show d-flex flex-column justify-content-between">
   <%= render 'shared/navbar' %>
   <div class="container bg-primary rounded-5 p-5 my-3 text-secondary">
+    <div class="wrapper">
+      <div class="tabs">
+        <div class="tab">
+          <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
+          <label for="tab-1" class="tab-label">Mi Perfil</label>
+          <div class="tab-content">My father had a small estate in Nottinghamshire: I was the third of five sons. He sent me to Emanuel College in Cambridge at fourteen years old, where I resided three years, and applied myself close to my studies; but the charge of maintaining me, although I had a very scanty allowance, being too great for a narrow fortune, I was bound apprentice to Mr. James Bates, an eminent surgeon in London, with whom I continued four years. </div>
+        </div>
+        <div class="tab">
+          <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
+          <label for="tab-2" class="tab-label">Recolecciones programadas</label>
+          <div class="tab-content">My father now and then sending me small sums of money, I laid them out in learning navigation, and other parts of the mathematics, useful to those who intend to travel, as I always believed it would be, some time or other, my fortune to do. </div>
+        </div>
+        <div class="tab">
+          <input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
+          <label for="tab-3" class="tab-label">Visitas programadas</label>
+          <div class="tab-content">When I left Mr. Bates, I went down to my father: where, by the assistance of him and my uncle John, and some other relations, I got forty pounds, and a promise of thirty pounds a year to maintain me at Leyden: there I studied physic two years and seven months, knowing it would be useful in long voyages.</div>
+        </div>
+      </div>
+      <p>Example line outside of tab box</p>
+    </div>
     <div class="row">
       <div class="col-8">
         <h1 class="text-secondary">En <%= @recycling_site.name %> sitio podrás reciclar: </h1>
         <h1 class="text-warning"><%= @recycling_site.material.category %></h1>
-            <% if @recycling_site.photo.attached? %>
-              <%= cl_image_tag @recycling_site.photo.key %>
-            <% else %>
-              <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg"%>
-            <% end %>
+          <% if @recycling_site.photo.attached? %>
+            <%= cl_image_tag @recycling_site.photo.key, class: "text-center mb-3", style: "height: 300px; width: 500px" %>
+          <% else %>
+            <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg", class: "text-center mb-3", style: "height: 300px; width: 500px" %>
+          <% end %>
         <p>Más información sobre el lugar</p>
         <%= link_to "Regresar", recycling_sites_path, class:"btn btn-success rounded-pill text-secondary" %>
         <%= link_to "Hablar con el recolector", "#", class:"btn btn-success rounded-pill text-secondary" %>
@@ -20,9 +40,15 @@
         <div class="map">
           <img src="https://static.vecteezy.com/system/resources/previews/002/920/438/original/abstract-city-map-seamless-pattern-roads-navigation-gps-use-for-pattern-fills-surface-textures-web-page-background-wallpaper-illustration-free-vector.jpg" alt="" style="width: 300px">
         </div>
-
-        <%#= link_to "Agenda tu visita", "#", class:"btn btn-success rounded-pill text-secondary mt-2" %>
-        <%= link_to "Ir", "#", class:"btn btn-success rounded-pill text-secondary mt-2 px-5" %>
+        <div class="mt-3">
+          <%= simple_form_for @petition do |f|%>
+            <%= f.input :status, as: :hidden, value: 0  %>
+            <%= f.datetime_select :date %>
+            <%= f.association :material, collection: Material.all, label_method: :category %>
+            <%= hidden_field_tag 'recycling_site_id', @recycling_site.id %>
+            <%= f.submit "Agendar visita", class:"btn btn-success rounded-pill text-secondary mt-3" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

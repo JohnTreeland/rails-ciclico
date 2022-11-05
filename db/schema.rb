@@ -83,8 +83,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_04_010435) do
     t.datetime "updated_at", null: false
     t.bigint "collector_id"
     t.integer "status", default: 0
+    t.bigint "recycling_site_id"
     t.index ["collector_id"], name: "index_petitions_on_collector_id"
     t.index ["material_id"], name: "index_petitions_on_material_id"
+    t.index ["recycling_site_id"], name: "index_petitions_on_recycling_site_id"
     t.index ["user_id"], name: "index_petitions_on_user_id"
   end
 
@@ -111,6 +113,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_04_010435) do
     t.boolean "collector"
     t.text "tax_number"
     t.string "nickname"
+    t.string "city"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -120,6 +123,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_04_010435) do
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "petitions", "materials"
+  add_foreign_key "petitions", "recycling_sites"
   add_foreign_key "petitions", "users"
   add_foreign_key "petitions", "users", column: "collector_id"
   add_foreign_key "recycling_sites", "materials"
