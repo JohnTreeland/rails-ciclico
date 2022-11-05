@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :collectors, only: %i[index show]
   resources :recycling_sites
-  resources :petitions, only: %i[index new create]
+  resources :petitions, only: %i[index create]
   patch "petitions/:id/accept", to: "petitions#accept_petition", as: "accept_petition"
   patch "petitions/:id/decline", to: "petitions#decline_petition", as: "decline_petition"
 end

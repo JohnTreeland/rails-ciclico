@@ -1,7 +1,7 @@
 class RecyclingSite < ApplicationRecord
   belongs_to :material
   belongs_to :collector, class_name: "User"
-
+  has_many :petitions
   has_one :address, as: :addressable
 
   has_one_attached :photo
