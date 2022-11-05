@@ -5,12 +5,10 @@
       <div class="col-8">
         <h1 class="text-secondary">En <%= @recycling_site.name %> sitio podrás reciclar: </h1>
         <h1 class="text-warning"><%= @recycling_site.material.category %></h1>
-        <% if recycling_site.photo.attached? %>
-              <%= cl_image_tag recycling_site.photo.key, style: "text-center mb-3", "height: 300px; width: 500px" %>
-            <% elsif recycling_site.user.photo.attached? %>
-              <%= cl_image_tag recycling_site.user.photo.key, style: "text-center mb-3", "height: 300px; width: 500px" %>
+            <% if @recycling_site.photo.attached? %>
+              <%= cl_image_tag @recycling_site.photo.key %>
             <% else %>
-              <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg", style: "text-center mb-3", "height: 300px; width: 500px" %>
+              <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg"%>
             <% end %>
         <p>Más información sobre el lugar</p>
         <%= link_to "Regresar", recycling_sites_path, class:"btn btn-success rounded-pill text-secondary" %>

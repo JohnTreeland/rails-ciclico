@@ -8,6 +8,6 @@ class PagesController < ApplicationController
   end
 
   def daily
-
   end
+
 end
