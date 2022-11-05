@@ -10,4 +10,8 @@ class PagesController < ApplicationController
   def daily
 
   end
+
+  def my_sites
+    @recycling_sites = RecyclingSite.where(collector: current_user)
+  end
 end

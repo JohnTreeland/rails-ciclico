@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get '/profile', to: 'pages#profile'
   get '/daily', to: 'pages#daily', as: "daily"
+  get "/my_sites", to: "pages#my_sites"
   # Defines the root path route ("/")
   # root "articles#index"
   resources :collectors, only: %i[index show]
