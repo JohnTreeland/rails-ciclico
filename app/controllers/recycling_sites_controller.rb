@@ -4,6 +4,12 @@ class RecyclingSitesController < ApplicationController
 
   def index
     @recycling_sites = RecyclingSite.all
+    @markers = Address.where(addressable_type: "RecyclingSite").geocoded.map do |address|
+      {
+        lat: address.latitude,
+        lng: address.longitude
+      }
+    end
   end
 
   def show
