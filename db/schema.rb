@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema[7.0].define(version: 2022_11_05_155620) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,8 +57,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_05_155620) do
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "collector_id"
-    t.index ["collector_id"], name: "index_materials_on_collector_id"
   end
 
   create_table "petitions", force: :cascade do |t|
@@ -106,7 +103,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_05_155620) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "materials", "users", column: "collector_id"
   add_foreign_key "petitions", "materials"
   add_foreign_key "petitions", "recycling_sites"
   add_foreign_key "petitions", "users"

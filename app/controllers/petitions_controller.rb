@@ -52,7 +52,7 @@ class PetitionsController < ApplicationController
   end
 
   def type_data
-    params.require(:petition).permit(:type)
+    params.require(:petition).permit(:collector_id, :recycling_site_id)
   end
 
   def address_data
