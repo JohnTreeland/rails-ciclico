@@ -3,7 +3,11 @@ class CollectorsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @collectors = User.where(collector: true)
+    if params[:city].present?
+      @collectors = User.where(city: params[:city])
+    else
+      @collectors = User.where(collector: true)
+    end
   end
 
   def show
