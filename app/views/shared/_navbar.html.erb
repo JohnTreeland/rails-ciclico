@@ -42,12 +42,50 @@
           </li>
 
         <% else %>
-          <li class="nav-item">
+          <%# <li class="nav-item"> %>
             <%#= link_to "Login", new_user_session_path, class: "nav-link btn btn-success rounded-pill text-secondary px-4 me-5" %>
-            <%= link_to "Iniciar Sesión", new_user_session_path, class: "nav-link px-4 me-5" %>
+            <%#= link_to "Iniciar Sesión", new_user_session_path, class: "nav-link px-4 me-5" %>
+          <%# </li> %>
+          <li class="nav-item">
+            <a type="button" class="nav-link px-4 me-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Iniciar Sesión
+            </a>
           </li>
         <% end %>
       </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-5 bg-secondary">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Inicio de sesión</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email,
+                        required: false,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" } %>
+            <%= f.input :password,
+                        required: false,
+                        input_html: { autocomplete: "current-password" } %>
+            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+            <%= link_to "Olvidaste tu contraseña?", new_password_path(resource_name) %><br />
+          </div>
+      </div>
+      <div class="modal-footer">
+        <div class="form-actions">
+            <%= f.button :submit, "Continuar reciclando", class: "text-secondary btn btn-primary rounded-pill" %>
+          </div>
+        <% end %>
+        <%= link_to "Regístrate", new_registration_path(resource_name), class: "btn btn-success rounded-pill" %><br />
+      </div>
     </div>
   </div>
 </div>
