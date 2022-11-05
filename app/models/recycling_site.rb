@@ -12,5 +12,15 @@ class RecyclingSite < ApplicationRecord
       "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg"
     end
   end
+  include PgSearch::Model
+
+  pg_search_scope :search_by_category,
+  against: [ :name],
+  associated_against: {
+    material: [ :category]
+  },
+  using: {
+    tsearch: { prefix: true }
+  }
 
 end
