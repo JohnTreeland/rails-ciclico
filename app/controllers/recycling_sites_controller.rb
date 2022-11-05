@@ -3,7 +3,11 @@ class RecyclingSitesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show new]
 
   def index
-    @recycling_sites = RecyclingSite.all
+    if params[:material].present?
+      @recycling_sites = RecyclingSite.search_by_category(params[:material])
+    else
+      @recycling_sites = RecyclingSite.all
+    end
     @markers = Address.where(addressable_type: "RecyclingSite").geocoded.map do |address|
       {
         lat: address.latitude,
