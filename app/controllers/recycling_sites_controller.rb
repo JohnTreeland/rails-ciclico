@@ -11,13 +11,22 @@ class RecyclingSitesController < ApplicationController
     @markers = Address.where(addressable_type: "RecyclingSite").geocoded.map do |address|
       {
         lat: address.latitude,
-        lng: address.longitude
+        lng: address.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { recycling_site: address.addressable }),
+        image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/861/861054.png")
       }
     end
   end
 
   def show
     @petition = Petition.new
+    @markers = Address.where(addressable: @recycling_site).geocoded.map do |address|
+      {
+        lat: address.latitude,
+        lng: address.longitude,
+        image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/861/861054.png")
+      }
+    end
   end
 
   def new
