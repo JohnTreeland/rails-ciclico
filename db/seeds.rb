@@ -2,6 +2,7 @@
 Petition.destroy_all
 RecyclingSite.destroy_all
 Material.destroy_all
+Address.destroy_all
 User.destroy_all
 
 puts "Borrando base de datos..."

@@ -4,9 +4,8 @@
 
 .tabs {
   position: relative;
-  margin: 3rem 0;
   background: $salmon;
-  height: 14.75rem;
+  height: 60vh;
 }
 .tabs::before,
 .tabs::after {
@@ -58,10 +57,8 @@
   background: $claro;
   color: #2c3e50;
   border-bottom: 0;
-  border-right: 0.125rem solid $amarillo;
   transition: all 0.35s;
   z-index: 1;
-  top: -0.0625rem;
 }
 .tab-switch:checked + label + .tab-content {
   z-index: 2;
