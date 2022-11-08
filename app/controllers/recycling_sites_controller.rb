@@ -37,8 +37,9 @@ class RecyclingSitesController < ApplicationController
   def create
     @recycling_site = RecyclingSite.new(recycling_site_params)
     @recycling_site.collector = current_user
+    @address = Address.create(address: address_data[:addresses_data][:address], addressable: @recycling_site)
     if @recycling_site.save
-      redirect_to recycling_sites_path
+      redirect_to "/my_sites"
     else
       render :new, status: :unprocessable_entity
     end
@@ -52,5 +53,9 @@ class RecyclingSitesController < ApplicationController
 
   def recycling_site_params
     params.require(:recycling_site).permit(:name, :material_id, :photo)
+  end
+
+  def address_data
+    params.require(:recycling_site).permit(addresses_data: [:address])
   end
 end

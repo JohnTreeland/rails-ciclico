@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home ]
+  skip_before_action :authenticate_user!, only: :home
 
   def home
   end
@@ -9,8 +9,10 @@ class PagesController < ApplicationController
 
   def daily
   end
-  
+
   def my_sites
+    @recycling_site = RecyclingSite.new
     @recycling_sites = RecyclingSite.where(collector: current_user)
   end
+
 end
