@@ -11,13 +11,22 @@ class RecyclingSitesController < ApplicationController
     @markers = Address.where(addressable_type: "RecyclingSite").geocoded.map do |address|
       {
         lat: address.latitude,
-        lng: address.longitude
+        lng: address.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { recycling_site: address.addressable }),
+        image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/861/861054.png")
       }
     end
   end
 
   def show
     @petition = Petition.new
+    @markers = Address.where(addressable: @recycling_site).geocoded.map do |address|
+      {
+        lat: address.latitude,
+        lng: address.longitude,
+        image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/861/861054.png")
+      }
+    end
   end
 
   def new
@@ -28,8 +37,9 @@ class RecyclingSitesController < ApplicationController
   def create
     @recycling_site = RecyclingSite.new(recycling_site_params)
     @recycling_site.collector = current_user
+    @address = Address.create(address: address_data[:addresses_data][:address], addressable: @recycling_site)
     if @recycling_site.save
-      redirect_to recycling_sites_path
+      redirect_to "/my_sites"
     else
       render :new, status: :unprocessable_entity
     end
@@ -43,5 +53,9 @@ class RecyclingSitesController < ApplicationController
 
   def recycling_site_params
     params.require(:recycling_site).permit(:name, :material_id, :photo)
+  end
+
+  def address_data
+    params.require(:recycling_site).permit(addresses_data: [:address])
   end
 end

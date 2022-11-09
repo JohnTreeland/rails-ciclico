@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+}
+
+.tabs {
+  position: relative;
+  background: $salmon;
+  height: 60vh;
+}
+.tabs::before,
+.tabs::after {
+  content: "";
+  display: table;
+}
+.tabs::after {
+  clear: both;
+}
+.tab {
+  float: left;
+}
+.tab-switch {
+  display: none;
+}
+.tab-label {
+  position: relative;
+  display: block;
+  line-height: 2.75em;
+  height: 3em;
+  padding: 0 1.618em;
+  background-color: #faf5e46b;
+  color: $claro;
+  cursor: pointer;
+  top: 0;
+  transition: all 0.25s;
+}
+.tab-label:hover {
+  // color: $verde-oscuro;
+  background-color: #faf5e490;
+  transition: top 0.25s;
+}
+.tab-content {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top: 2.75em;
+  left: 0;
+  padding: 1.618rem;
+  background: $claro;
+  color: $gray;
+  opacity: 0;
+  transition: all 0.15s;
+  overflow: auto;
+}
+
+.tab-switch:checked + .tab-label {
+  background: $claro;
+  color: #2c3e50;
+  border-bottom: 0;
+  transition: all 0.35s;
+  z-index: 1;
+}
+.tab-switch:checked + label + .tab-content {
+  z-index: 2;
+  opacity: 1;
+  transition: all 0.35s;
+}
+
+#profile-scroll::-webkit-scrollbar {
+  width: 0px;
+  height: 0.15rem;
+}
+
+#profile-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#profile-scroll::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 1rem;
+  border: 0rem solid transparent;
+}

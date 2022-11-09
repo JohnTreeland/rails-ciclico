@@ -2,6 +2,9 @@
   <%= render 'shared/navbar' %>
 <div class="container text-secondary bg-primary rounded-5 p-5 f-flex">
     <h1>Mis puntos de reciclajes</h1>
+    <a type="button" class="btn btn-info rounded-pill mt-3" data-bs-toggle="modal" data-bs-target="#RecyclingModal">
+      Agregar sitio de reciclaje
+    </a>
     <div class="row">
       <div class="col-4">
         <% @recycling_sites.each do |site|  %>
@@ -53,4 +56,35 @@
     </div>
   </div>
 </div>
+
   <%= render 'shared/footer' %>
+
+<!-- Modal -->
+<div class="modal fade" id="RecyclingModal" tabindex="-1" aria-labelledby="RecyclingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-5 bg-secondary">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="RecyclingModalLabel">Agregar Sitio de Reciclaje</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <%= simple_form_for [@recycling_site] do |f| %>
+        <div class="modal-body">
+          <%= f.input :name, required: true %>
+          <%= f.association :material, collection: Material.all, label_method: :category, required: true %>
+          <%= f.input :description, required: true %>
+          <%= f.simple_fields_for :addresses_data do |a| %>
+            <%= a.input :address,
+              input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
+              wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+            %>
+          <% end %>
+          <%= f.input :photo, as: :file %>
+        </div>
+        <div class="modal-footer">
+          <%= f.button :submit, "Agregar", class: "btn btn-primary mb-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

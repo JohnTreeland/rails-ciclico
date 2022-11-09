@@ -1,38 +1,52 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="row d-flex" >
+  <div class="col-6 p-5">
+    <h2>Editar perfil</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+      <div class="form-inputs">
+        <%= f.input :email, required: true, autofocus: true %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% end %>
+
+        <%= f.input :password,
+                    hint: "Dejar en blaco si no deseas cambiar la contraseña",
+                    required: false,
+                    input_html: { autocomplete: "new-password" } %>
+        <%= f.input :password_confirmation,
+                    required: false,
+                    input_html: { autocomplete: "new-password" } %>
+        <%= f.input :tax_number,
+                    hint: "Dejar en blaco si no deseas cambiar tax number",
+                    required: false,
+                    input_html: { autocomplete: "new-tax_number" } %>
+        <%= f.input :photo, as: :file %>
+        <%= f.input :current_password,
+                    hint: "Necesitamos tu contraseña actual para confirmar los cambios",
+                    required: true,
+                    input_html: { autocomplete: "current-password" } %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Actualizar", class: "btn btn-primary" %>
+      </div>
     <% end %>
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+    <h3>Cancelar mi cuenta</h3>
+
+    <div class="d-flex align-items-center">
+      <div>¿Infeliz?</div>
+      <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "¿Estas seguro?" }, method: :delete, class: "btn btn-link", class: "btn btn-primary" %>
+    </div>
+
+    <%= link_to "Volver", :back, class: "btn btn-primary" %>
+    <%= render "devise/shared/links"%>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+  <div class="col-6" >
+    <%=image_tag ("Edit.jpg"), style: "height: 900px; width: 800px"%>
+    <%#img src="https://images.unsplash.com/photo-1614201991207-765637dd6183?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80" alt="" class="w-100"%>
   </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div class="d-flex align-items-center">
-  <div>Unhappy?</div>
-  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link" %>
 </div>
-
-<%= link_to "Back", :back %>
