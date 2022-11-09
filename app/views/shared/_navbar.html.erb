@@ -60,8 +60,8 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Inicio de sesión</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+        <div class="modal-body">
           <div class="form-inputs">
             <%= f.input :email,
                         required: false,
@@ -71,16 +71,16 @@
                         required: false,
                         input_html: { autocomplete: "current-password" } %>
             <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-            <%= link_to "Olvidaste tu contraseña?", new_password_path(resource_name) %><br />
+            <%= link_to "Olvidaste tu contraseña?", new_password_path(resource_name) %>
           </div>
-      </div>
-      <div class="modal-footer">
-        <div class="form-actions">
+        </div>
+        <div class="modal-footer">
+          <div class="form-actions">
             <%= f.button :submit, "Continuar reciclando", class: "text-secondary btn btn-primary rounded-pill" %>
           </div>
-        <% end %>
-        <%= link_to "Regístrate", new_registration_path(resource_name), class: "btn btn-success rounded-pill" %><br />
-      </div>
+          <%= link_to "Regístrate", new_registration_path(resource_name), class: "btn btn-success rounded-pill" %><br />
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
