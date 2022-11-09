@@ -57,10 +57,11 @@
         <h1 class="modal-title fs-5" id="RecyclingModalLabel">Agregar Sitio de Reciclaje</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <%= simple_form_for [@recycling_site] do |f| %>
+      <%= simple_form_for [@recycling_site] do |f| %>
+        <div class="modal-body">
           <%= f.input :name, required: true %>
           <%= f.association :material, collection: Material.all, label_method: :category, required: true %>
+          <%= f.input :description, required: true %>
           <%= f.simple_fields_for :addresses_data do |a| %>
             <%= a.input :address,
               input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
@@ -68,11 +69,11 @@
             %>
           <% end %>
           <%= f.input :photo, as: :file %>
-      </div>
-      <div class="modal-footer">
+        </div>
+        <div class="modal-footer">
           <%= f.button :submit, "Agregar", class: "btn btn-primary mb-3" %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
