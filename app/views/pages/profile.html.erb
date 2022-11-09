@@ -21,15 +21,9 @@
         <hr>
         <div class="mt-3">
           <% Petition.where(user: current_user).each do |petition| %>
-            <% if petition.collector %>
-              <p>Recolector: <%= petition.collector.first_name %></p>
-              <p>Material: <%= petition.material.category %></p>
-            <% end %>
-            <% if petition.recycling_site %>
-              <p>Sitio de reciclaje: <%= petition.recycling_site.name %></p>
-              <p>Material: <%= petition.recycling_site.material.category %></p>
-            <% end %>
+            <p>Recolector: <%= petition.collector.first_name %></p>
             <p>Fecha: <%= petition.date %></p>
+            <p>Material: <%= petition.material.category %></p>
             <div class="d-flex">
               <p class="me-2">Estado: </p>
               <% if petition.pendiente? %>

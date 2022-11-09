@@ -13,7 +13,7 @@
     <div class="row">
       <% @collectors.each do |collector| %>
         <div class="col-4">
-          <%= link_to collector_path(collector) do %>
+          <%= link_to collector_path(collector), class: "text-decoration-none" do %>
             <div class="card my-2">
                   <img src="https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg" class="card-img-top">
                   <div class="card-body">
