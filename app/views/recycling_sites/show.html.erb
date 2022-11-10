@@ -1,23 +1,20 @@
-<div class="ciclico-gradient-show d-flex flex-column justify-content-between">
+<div class="ciclico-gradient d-flex flex-column justify-content-between">
   <%= render 'shared/navbar' %>
   <div class="container bg-primary rounded-5 p-5 my-3 text-secondary">
     <div class="row">
-      <div class="col-8">
-        <h1 class="text-secondary">En <%= @recycling_site.name %> sitio podrás reciclar: </h1>
+      <div class="col-7">
+        <h1 class="text-secondary">En <i><%= @recycling_site.name %></i> podrás reciclar: </h1>
         <h1 class="text-warning"><%= @recycling_site.material.category %></h1>
           <% if @recycling_site.photo.attached? %>
-            <%= cl_image_tag @recycling_site.photo.key, class: "text-center mb-3", style: "height: 300px; width: 500px" %>
+            <%= cl_image_tag @recycling_site.photo.key, class: "text-center mb-3", style: "width: 70%; height: auto" %>
           <% else %>
-            <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg", class: "text-center mb-3", style: "height: 300px; width: 500px" %>
+            <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg", class: "text-center mb-3", style: "width: 70%; height: auto" %>
           <% end %>
-        <p>Más información sobre el lugar</p>
+        <p><%= @recycling_site.description %></p>
         <%= link_to "Regresar", recycling_sites_path, class:"btn btn-success rounded-pill text-secondary" %>
-        <%= link_to "Hablar con el recolector", "#", class:"btn btn-success rounded-pill text-secondary" %>
       </div>
       <div class="col-4">
-        <h3>Ubicación:</h3>
-        <h4><%#= @recycling_site.material.address %></h4>
-        <div style="width: 100%; height: 600px;"
+        <div style="width: 100%; height: 65%;"
           data-controller="map"
           data-map-markers-value="<%= @markers.to_json %>"
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -28,7 +25,7 @@
             <%= f.datetime_select :date %>
             <%= f.association :material, collection: Material.all, label_method: :category %>
             <%= hidden_field_tag 'recycling_site_id', @recycling_site.id %>
-            <%= f.submit "Agendar visita", class:"btn btn-success rounded-pill text-secondary mt-3" %>
+            <%= f.submit "Agendar visita", class:"btn btn-success rounded-pill text-secondary mt-1" %>
           <% end %>
         </div>
       </div>
