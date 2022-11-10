@@ -31,7 +31,7 @@
               <%= link_to "Mi Perfil", "/profile", class: "dropdown-item text-info" %>
               <% if current_user.collector %>
                 <%= link_to "Administrar Sitios de Reciclaje", "/my_sites", class: "dropdown-item text-info" %>
-                <%= link_to "Ver Peticiones", "/daily", class: "dropdown-item text-info" %>
+                <%= link_to "Ver Peticiones", "/my_petitions", class: "dropdown-item text-info" %>
               <% end %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item text-info" %>
             </div>

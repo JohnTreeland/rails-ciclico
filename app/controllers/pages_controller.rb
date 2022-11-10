@@ -7,7 +7,14 @@ class PagesController < ApplicationController
   def profile
   end
 
-  def daily
+  def my_petitions
+    @markers = Address.where(addressable: @petition).geocoded.map do |address|
+      {
+        lat: address.latitude,
+        lng: address.longitude,
+        image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/3299/3299935.png")
+      }
+    end
   end
 
   def my_sites

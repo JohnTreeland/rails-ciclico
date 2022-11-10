@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   get '/profile', to: 'pages#profile'
-  get '/daily', to: 'pages#daily', as: "daily"
+  get '/my_petitions', to: 'pages#my_petitions', as: "my_petitions"
   get "/my_sites", to: "pages#my_sites"
   # Defines the root path route ("/")
   # root "articles#index"
