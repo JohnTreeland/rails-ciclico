@@ -36,6 +36,16 @@ class PetitionsController < ApplicationController
     end
   end
 
+  def do_petition
+    @petition = Petition.find(params[:id])
+    @petition.status = 3
+    if @petition.save
+      redirect_to my_petitions_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_collector

@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :petitions, only: %i[index create]
   patch "petitions/:id/accept", to: "petitions#accept_petition", as: "accept_petition"
   patch "petitions/:id/decline", to: "petitions#decline_petition", as: "decline_petition"
+  patch "petitions/:id/do", to: "petitions#do_petition", as: "do_petition"
 end

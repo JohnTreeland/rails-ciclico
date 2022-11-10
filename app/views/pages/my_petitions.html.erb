@@ -1,75 +1,98 @@
-  <div class="ciclico-gradient d-flex flex-column justify-content-between">
+  <div class="ciclico-gradient-show d-flex flex-column justify-content-between">
   <%= render 'shared/navbar' %>
-  <div class="container text-secondary bg-primary rounded-5 p-5">
-    <% unless Petition.where(collector: current_user, status: 0).empty? %>
-      <h2 class="text-info">Tienes peticiones pendientes</h2>
-      <div class="bg-secondary rounded-5 p-3">
-        <div class="mt-3 row">
-          <%= Petition.where(collector: current_user, status: 0).each do |petition| %>
-            <div class="col-4">
-              <div class="card bg-transparent border-info ms-3 mb-3 rounded-5" style="max-width: 18rem;">
-                <div class="card-header rounded-top bg-transparent">
-                  <h4 class="text-success mt-2 text-center"> <b><%= petition.user.first_name %></b></h4>
-                </div>
-                <div class="card-body text-success">
-                  <p class="card-text">
-                    Te realizó una petición para recoger <i><%= petition.material.category %></i> el <%= petition.date %> en la siguiente ubicación: </p>
-                    <%= petition.address.address %>
-                    <% marker = Address.where(addressable: petition).geocoded.map do |address|
-                      {
-                        lat: address.latitude,
-                        lng: address.longitude
-                      }
-                    end %>
-                    <div style="width: 100%; height: auto;"
-                      data-controller="map"
-                      data-map-markers-value="<%= marker.to_json %>"
-                      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-                    </div>
-                    <div class="d-flex">
-                      <%= link_to "Rechazar", decline_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary me-3" %>
-                      <%= link_to "Aceptar", accept_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary" %>
-                    </div>
-                  </p>
+  <div class="container text-secondary bg-primary rounded-5 px-5 flex-grow-1">
+    <div class="tabs my-5">
+      <div class="tab">
+        <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
+        <label for="tab-1" class="tab-label rounded-pill me-2 fs-5">Peticiones pendientes</label>
+        <div class="tab-content mt-4 rounded-5 row" id="profile-scroll">
+          <% if Petition.where(collector: current_user, status: 0).empty? %>
+            <h3 class="text-info text-center">No tienes peticiones nuevas</h3>
+          <% end %>
+          <div class="mt-3 row">
+            <% Petition.where(collector: current_user, status: 0).each do |petition| %>
+              <div class="col-4">
+                <div class="card bg-transparent border-info ms-3 mb-3 rounded-5" style="max-width: 18rem;">
+                  <div class="card-header rounded-top bg-transparent">
+                    <h4 class="text-success mt-2 text-center"> <b><%= petition.user.first_name %></b></h4>
+                  </div>
+                  <div class="card-body text-success">
+                    <p class="card-text">
+                      Te realizó una petición para recoger <i><%= petition.material.category %></i> el <%= petition.date %> en la siguiente ubicación: </p>
+                      <%= petition.address.address %>
+                      <div class="d-flex">
+                        <%= link_to "Rechazar", decline_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary me-3 rounded-pill text-secondary" %>
+                        <%= link_to "Aceptar", accept_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary rounded-pill text-secondary" %>
+                      </div>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
-    <% end %>
-    <h2 class="text-warning">Peticiones pendientes</h2>
-    <div class="row">
-      <div class="col-8">
-      <div class="col-4">
-        <h3>Agendas para ti</h3>
-        <hr>
-        <div class="mt-3">
-          <% Petition.where(collector: current_user).each do |petition| %>
-            <p>Solicitante: <%= petition.user.first_name %></p>
-            <p>Fecha: <%= petition.date %></p>
-            <p>Material: <%= petition.material.category %></p>
-            <div class="d-flex">
-              <p class="me-2">Estado: </p>
-              <% if petition.pendiente? %>
-                <p>Pendiente </p>
-              <% elsif petition.aceptado? %>
-                <p>Aceptado</p>
-              <% elsif petition.rechazado?  %>
-                <p> Rechazado </p>
+      <div class="tab">
+        <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
+        <label for="tab-2" class="tab-label rounded-pill me-2 fs-5">Peticiones aceptadas</label>
+        <div class="tab-content mt-4 rounded-5">
+          <div class="mt-3 row">
+            <% if Petition.where(collector: current_user, status: 1).empty? %>
+              <h3 class="text-info text-center">No tienes peticiones aceptadas</h3>
+            <% end %>
+            <div class="mt-3 row">
+              <% Petition.where(collector: current_user, status: 1).each do |petition| %>
+                <div class="col-6">
+                  <div class="card bg-transparent border-info ms-3 mb-3 rounded-5" style="max-width: 30rem;">
+                    <div class="card-header rounded-top bg-transparent">
+                      <h4 class="text-success mt-2 text-center"> <b><%= petition.user.first_name %></b></h4>
+                    </div>
+                    <div class="card-body text-success">
+                      <p class="card-text">
+                        Te realizó una petición para recoger <i><%= petition.material.category %></i> el <%= petition.date %> en la siguiente ubicación: <%= petition.address.address %> <br>
+                        Por favor asiste a tiempo, en caso de no poder cumplir por favor comunícate con <%= petition.user.first_name %> al correo <%= petition.user.email %>
+                      </p>
+                      <div class="text-center">
+                        <%= link_to "Marcar como realizada", do_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary rounded-pill text-secondary" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               <% end %>
             </div>
-            <%# <%= link_to "Aceptar peticion", accept_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary" %>
-            <%# <%= link_to "Rechazar peticion", decline_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary" %>
-            <% if current_user.collector? %>
-              <%= link_to "Rechazar peticion", decline_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary" %>
-              <%= link_to "Aceptar peticion", accept_petition_path(petition), data: {turbo_method: :patch }, class:"btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+      <div class="tab">
+        <input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
+        <label for="tab-3" class="tab-label rounded-pill me-2 fs-5">Recolecciones realizadas</label>
+        <div class="tab-content mt-4 rounded-5">
+          <div class="mt-3 row">
+            <% if Petition.where(collector: current_user, status: 3).empty? %>
+              <h3 class="text-info text-center">Todavía no has hecho ninguna recolección</h3>
             <% end %>
-            <hr>
-          <% end %>
+            <div class="mt-3 row">
+              <% Petition.where(collector: current_user, status: 3).each do |petition| %>
+                <div class="col-4">
+                  <div class="card bg-transparent border-info ms-3 mb-3 rounded-5" style="max-width: 18rem;">
+                    <div class="card-header rounded-top bg-transparent">
+                      <h4 class="text-success mt-2 text-center"> <b><%= petition.user.first_name %></b></h4>
+                    </div>
+                    <div class="card-body text-success">
+                      <p class="card-text">
+                        Te realizó una petición para recoger <i><%= petition.material.category %></i> el <%= petition.date %> en la siguiente ubicación: </p>
+                        <%#= petition.address.address %>
+                        Asististe a tiempo y realizaste la recolección, muchas gracias!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <%= render 'shared/footer' %>
 </div>
-<%= render 'shared/footer' %>
