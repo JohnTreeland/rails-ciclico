@@ -22,10 +22,17 @@
 }
 
 .dropdown-ciclico {
-  background: rgba(0, 0, 0, 0.5);
-  .a {
-    &:hover{
-    background: rgba(255, 0, 0, 0.5)
-    }
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-item:hover {
+  background: #ffffff50;
+  color: black;
+}
+
+.ciclico {
+  &:hover{
+    color: $amarillo;
+    transition: linear;
   }
 }

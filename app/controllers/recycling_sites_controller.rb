@@ -13,7 +13,7 @@ class RecyclingSitesController < ApplicationController
         lat: address.latitude,
         lng: address.longitude,
         info_window: render_to_string(partial: "info_window", locals: { recycling_site: address.addressable }),
-        image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/861/861054.png")
+        image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/3299/3299935.png")
       }
     end
   end
@@ -24,7 +24,7 @@ class RecyclingSitesController < ApplicationController
       {
         lat: address.latitude,
         lng: address.longitude,
-        image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/861/861054.png")
+        image_url: helpers.asset_url("https://cdn-icons-png.flaticon.com/512/3299/3299935.png")
       }
     end
   end
