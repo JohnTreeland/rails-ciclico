@@ -52,7 +52,7 @@ class RecyclingSitesController < ApplicationController
   end
 
   def recycling_site_params
-    params.require(:recycling_site).permit(:name, :material_id, :photo)
+    params.require(:recycling_site).permit(:name, :material_id, :photo, :description)
   end
 
   def address_data
