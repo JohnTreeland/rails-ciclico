@@ -1,9 +1,9 @@
 <div class="bg-white">
-  <% if recycling_site.photo.attached? %>
+  <%# if recycling_site.photo.attached? %>
     <%#= cl_image_tag recycling_site.photo.key, class: "text-center mb-3", style: "height: auto; width: 100%" %>
-  <% else %>
-    <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg", class: "text-center mb-3", style: "height: auto; width: 100%" %>
-  <% end %>
+  <%# else %>
+    <%#= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg", class: "text-center mb-3", style: "height: auto; width: 100%" %>
+  <%# end %>
   <h2 class="text-primary"><%= recycling_site.name %></h2>
   <h4>Reciclamos <%= recycling_site.material.category %></h4>
   <p><%= recycling_site.address.address %></p>
