@@ -20,7 +20,7 @@ class PetitionsController < ApplicationController
     @petition = Petition.find(params[:id])
     @petition.status = 1
     if @petition.save
-      redirect_to daily_path
+      redirect_to my_petitions_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,7 +30,37 @@ class PetitionsController < ApplicationController
     @petition = Petition.find(params[:id])
     @petition.status = 2
     if @petition.save
-      redirect_to daily_path
+      redirect_to my_petitions_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def do_petition
+    @petition = Petition.find(params[:id])
+    @petition.status = 3
+    if @petition.save
+      redirect_to my_petitions_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def accept_petition_site
+    @petition = Petition.find(params[:id])
+    @petition.status = 1
+    if @petition.save
+      redirect_to accept_petition_site_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def decline_petition_site
+    @petition = Petition.find(params[:id])
+    @petition.status = 2
+    if @petition.save
+      redirect_to decline_petition_site_path
     else
       render :new, status: :unprocessable_entity
     end
