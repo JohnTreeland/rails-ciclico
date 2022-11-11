@@ -12,16 +12,15 @@
         <h4>Horario: Lunes a Viernes 12:00 a 21:00</h4>
         <p>Trabajo principalmente por los barrios de El Dorado, Alcalá y El Portal en Envigado, recibo principalmente papel/cartón</p>
         <%= link_to "Regresar", collectors_path, class:"btn btn-success rounded-pill text-secondary" %>
-        <%= link_to "Hablar con #{@collector.first_name}", "#", class:"btn btn-success rounded-pill text-secondary" %>
       </div>
       <div class="col-4">
         <h3></h3>
         <h4><%#= @recycling_site.material.address %></h4>
         <div class="map">
           <% if @collector.photo.attached? %>
-                   <%= cl_image_tag @collector.photo.key, style: "width:250px; height:250px"%>
+                   <%= cl_image_tag @collector.photo.key, style: "width: 100%; height:250px"%>
                   <% else %>
-                   <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg", style: "width:250px; height:250px"%>
+                   <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg", style: "width:100%; height:250px"%>
                   <% end %>
         </div>
         <div class="mt-3">
