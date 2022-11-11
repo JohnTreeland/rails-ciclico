@@ -1,11 +1,11 @@
 <div class="bg-white">
-  <%# if recycling_site.photo.attached? %>
-    <%#= cl_image_tag recycling_site.photo.key, class: "text-center mb-3", style: "height: auto; width: 100%" %>
-  <%# else %>
-    <%#= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg", class: "text-center mb-3", style: "height: auto; width: 100%" %>
-  <%# end %>
-  <h2 class="text-primary"><%= recycling_site.name %></h2>
-  <h4>Reciclamos <%= recycling_site.material.category %></h4>
-  <p><%= recycling_site.address.address %></p>
-  <%= link_to "Ver más", recycling_site_path(recycling_site), class:"btn-info-ciclico m-1 rounded-pill text-secondary px-4" %>
+  <% if @recycling_site.photo.attached? %>
+    <%= cl_image_tag @recycling_site.photo.key, class: "text-center mb-3", style: "height: auto; width: 100%" %>
+  <% else %>
+    <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg", class: "text-center mb-3", style: "height: auto; width: 100%" %>
+  <% end %>
+  <h2 class="text-primary"><%= @recycling_site.name %></h2>
+  <h4>Reciclamos <%= @recycling_site.material.category %></h4>
+  <p><%= @recycling_site.address.address %></p>
+  <%= link_to "Ver más", recycling_site_path(@recycling_site), class:"btn-info-ciclico m-1 rounded-pill text-secondary px-4" %>
 </div>
