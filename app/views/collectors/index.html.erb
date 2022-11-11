@@ -14,12 +14,16 @@
       <% @collectors.each do |collector| %>
         <div class="col-4">
           <%= link_to collector_path(collector) do %>
-            <div class="card my-2">
-                  <img src="https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg" class="card-img-top">
+            <div class="card my-2 rounded-5" >
+                  <% if collector.photo.attached? %>
+                   <%= cl_image_tag collector.photo.key, style: "width:auto; height:235px", class: "rounded-5" %>
+                  <% else %>
+                   <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg", style: "width:auto; height:235px", class: "rounded-5" %>
+                  <% end %>
                   <div class="card-body">
-                   <p>Contacta a </p>
                     <h2><%= collector.first_name %></h2>
                     <h2><%= collector.city %></h2>
+                    <h4><%= "collector.city" %></h4>
                   </div>
             </div>
           <% end %>

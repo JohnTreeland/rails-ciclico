@@ -33,7 +33,7 @@ style: 'mapbox://styles/mapbox/streets-v11', // style URL
            <%= link_to recycling_site_path(site) do %>
             <div class="card my-2">
                   <% if site.photo.attached? %>
-                   <%= cl_image_tag site.photo.key %>
+                   <%= cl_image_tag site.photo.key, style: "width:auto; height:235px" %>
                   <% else %>
                    <%= image_tag "https://www.wiego.org/sites/default/files/Hewlett_Bogota_FullRelease_050_1.jpg" %>
                   <% end %>
