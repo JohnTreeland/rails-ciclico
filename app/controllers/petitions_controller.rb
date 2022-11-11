@@ -10,7 +10,7 @@ class PetitionsController < ApplicationController
     @petition.user = current_user
     assign_reference
     if @petition.save
-      redirect_to collectors_path
+      redirect_to "/profile"
     else
       render :new, status: :unprocessable_entity
     end
