@@ -14,4 +14,13 @@ module ApplicationHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+
+  def page_title(separator = " – ")
+    [content_for(:title), 'Cíclico'].compact.join(separator)
+  end
+
+  def page_heading(title)
+    content_for(:title){ title }
+    content_tag(:h1, title)
+  end
 end
