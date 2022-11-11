@@ -8,6 +8,7 @@ class RecyclingSitesController < ApplicationController
     else
       @recycling_sites = RecyclingSite.all
     end
+    @markers = nil
     @markers = Address.where(addressable_type: "RecyclingSite").geocoded.map do |address|
       {
         lat: address.latitude,
